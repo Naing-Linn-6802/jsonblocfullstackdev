@@ -12,6 +12,7 @@ class PostBlock {
   Stream<Response> postStream() => postController.stream;
 
   dispose() {
+
     postController.close();
   }
 

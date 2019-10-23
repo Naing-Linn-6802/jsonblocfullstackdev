@@ -14,6 +14,7 @@ class PostBlock {
   dispose() {
 
     postController.close();
+
   }
 
   getData() async {

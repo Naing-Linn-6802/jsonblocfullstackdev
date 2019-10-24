@@ -38,7 +38,9 @@ class _CommentPageState extends State<CommentPage> {
         appBar: AppBar(title: Text("Comment Page"), centerTitle: true),
         body: Column(
           children: <Widget>[
+
             PostWidget(widget.map),
+            SizedBox(height: 30),
             Text(
               "Comments",
               style: TextStyle(
@@ -46,6 +48,7 @@ class _CommentPageState extends State<CommentPage> {
                   fontWeight: FontWeight.bold,
                   color: Colors.purple),
             ),
+            SizedBox(height: 30),
             StreamBuilder<Response>(
                 stream: block.cmtStream(),
                 initialData: Response(myState: MyState.loading, data: null),
@@ -85,6 +88,19 @@ class _CommentPageState extends State<CommentPage> {
                         itemCount: cmts.length,
                       ),
                     );
+                  } else if (resp.myState == MyState.error) {
+                    //added new
+                    return Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: <Widget>[
+                          Text(resp.data),
+                          RaisedButton(child: Text("try again"),
+                              onPressed: () =>
+                                  block.getComment(widget.map["id"].toString()))
+                        ],
+                      );
+
                   }
                 })
           ],

@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flatajsonblock/commentpage/comment_pages.dart';
 import 'package:flatajsonblock/model/response.dart';
-import 'package:flatajsonblock/pages/myblock.dart';
+import 'package:flatajsonblock/pages/post_block.dart';
 import 'package:flatajsonblock/post_widgets/PostWidgets.dart';
 import 'package:flatajsonblock/utils/app_constants.dart';
 import 'package:http/http.dart' as http;
@@ -59,8 +59,14 @@ class _Post_PageState extends State<Post_Page> {
                   itemCount: snapshot.data.data.length,
                 );
               } else if (snapshot.data.myState == MyState.error) {
-                return Center(
-                  child: Text(snapshot.data.data),
+                //added new
+                return Column(
+                  children: <Widget>[
+                    Text(snapshot.data.data),
+                    RaisedButton(
+                        child: Text("Try Again"),
+                        onPressed: () => block.getData())
+                  ],
                 );
               }
             }));

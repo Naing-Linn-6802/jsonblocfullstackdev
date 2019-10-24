@@ -33,10 +33,14 @@ class CommentBlock {
         resp.data = listdata;
         cmtController.sink.add(resp);
       } else {
-        print("error");
+        resp.myState==MyState.error;
+        resp.data="data fecting error";
+        cmtController.sink.add(resp);
       }
     }).catchError((e) {
-      print(e.toString());
+      resp.myState = MyState.error;
+      resp.data = "data fetcting error";
+      cmtController.sink.add(resp);
     });
   }
 }

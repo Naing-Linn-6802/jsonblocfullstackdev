@@ -60,13 +60,15 @@ class _Post_PageState extends State<Post_Page> {
                 );
               } else if (snapshot.data.myState == MyState.error) {
                 //added new
-                return Column(
-                  children: <Widget>[
-                    Text(snapshot.data.data),
-                    RaisedButton(
-                        child: Text("Try Again"),
-                        onPressed: () => block.getData())
-                  ],
+                return Center(
+                  child: Column(mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text(snapshot.data.data),
+                      RaisedButton(
+                          child: Text("Try Again"),
+                          onPressed: () => block.getData())
+                    ],
+                  ),
                 );
               }
             }));
